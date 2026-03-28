@@ -8,396 +8,427 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f5f2ec;
-  --ink:#1a1814;--ink2:#4a4740;--ink3:#9a9590;
-  --surface:#fff;--surface2:#efece6;
-  --border:#dedad3;--border2:#c8c4bc;
-  --accent:#c0392b;--accent2:#e8534a;--accent-bg:#fdf0ef;
-  --success:#2d7a5f;--success-bg:#edf7f3;
-  --r:12px;--r-sm:8px;
+  --bg:#f6f3ee;
+  --ink:#18160f;--ink2:#4a4740;--ink3:#9a9590;
+  --surface:#fff;--surface2:#f0ece5;
+  --border:#e2ddd6;--border2:#c8c3bb;
+  --accent:#d4522a;--accent2:#e8704a;--accent-bg:#fdf1ed;
+  --success:#2a7a5a;--success-bg:#eaf6f1;
+  --insta:#e1306c;--insta-bg:#fdeef4;
+  --r:14px;--r-sm:9px;
 }
-body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;
-  background-image:radial-gradient(circle at 20% 20%,rgba(192,57,43,.04) 0%,transparent 50%),
-  radial-gradient(circle at 80% 80%,rgba(192,57,43,.03) 0%,transparent 50%)}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
 
-.view{display:none;min-height:100vh;flex-direction:column;animation:fi .25s ease}
+.view{display:none;min-height:100vh;flex-direction:column;animation:fi .2s ease}
 .view.active{display:flex}
-@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
-/* topbar */
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 2rem;
-  border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:10}
-.logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;color:var(--ink);
-  letter-spacing:-.3px;cursor:pointer}
+/* ── TOPBAR ── */
+.topbar{display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 1.5rem;border-bottom:1px solid var(--border);
+  background:var(--surface);position:sticky;top:0;z-index:10}
+.logo{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:500;
+  color:var(--ink);cursor:pointer;letter-spacing:-.3px}
 .logo em{font-style:italic;color:var(--accent)}
-.nav-links{display:flex;gap:1.5rem;align-items:center}
-.nav-links a{font-size:.8rem;font-weight:500;letter-spacing:.3px;color:var(--ink3);
-  text-decoration:none;cursor:pointer;text-transform:uppercase;transition:color .2s}
-.nav-links a:hover{color:var(--accent)}
-.nav-user{font-size:.78rem;color:var(--ink2);display:flex;align-items:center;gap:8px}
-.nav-user span{color:var(--accent);font-weight:600}
+.nav{display:flex;gap:1.2rem;align-items:center}
+.nav a{font-size:.78rem;font-weight:600;letter-spacing:.3px;text-transform:uppercase;
+  color:var(--ink3);cursor:pointer;transition:color .2s;text-decoration:none}
+.nav a:hover,.nav a.active{color:var(--accent)}
+.nav-sep{width:1px;height:14px;background:var(--border2)}
 
-/* forms */
+/* ── FORMS ── */
 input,textarea{width:100%;background:var(--surface2);border:1px solid var(--border);
-  border-radius:var(--r-sm);color:var(--ink);font-family:'Syne',sans-serif;font-size:.88rem;
-  padding:.78rem 1rem;outline:none;transition:border-color .2s,background .2s}
+  border-radius:var(--r-sm);color:var(--ink);font-family:'Syne',sans-serif;
+  font-size:.9rem;padding:.8rem 1rem;outline:none;transition:border-color .2s,background .2s}
 input::placeholder,textarea::placeholder{color:var(--ink3)}
 input:focus,textarea:focus{border-color:var(--accent);background:var(--surface)}
 textarea{resize:none;line-height:1.65}
-label{font-size:.72rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;
-  color:var(--ink3);display:block;margin-bottom:6px;margin-top:1.1rem}
+label{font-size:.7rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--ink3);display:block;margin-bottom:5px;margin-top:1rem}
 label:first-child{margin-top:0}
-.insta-row{position:relative}
-.insta-row span{position:absolute;left:.9rem;top:50%;transform:translateY(-50%);
-  color:var(--ink3);font-size:.88rem;pointer-events:none}
-.insta-row input{padding-left:1.65rem}
+.ig-row{position:relative}
+.ig-row span{position:absolute;left:.9rem;top:50%;transform:translateY(-50%);
+  color:var(--ink3);font-size:.9rem;pointer-events:none}
+.ig-row input{padding-left:1.6rem}
 
-/* buttons */
+/* ── BUTTONS ── */
 .btn{padding:.78rem 1.5rem;border-radius:var(--r-sm);font-family:'Syne',sans-serif;
   font-size:.82rem;font-weight:600;letter-spacing:.4px;text-transform:uppercase;
-  cursor:pointer;transition:all .2s;border:none}
+  cursor:pointer;transition:all .18s;border:none;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px}
 .btn-primary{background:var(--accent);color:#fff;width:100%}
 .btn-primary:hover{background:var(--accent2)}
 .btn-primary:active{transform:scale(.98)}
-.btn-outline{background:transparent;border:1.5px solid var(--border2);color:var(--ink2);width:auto}
+.btn-outline{background:transparent;border:1.5px solid var(--border2);color:var(--ink2)}
 .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
-.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--ink3);font-weight:500;width:auto}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--ink3)}
 .btn-ghost:hover{border-color:var(--ink2);color:var(--ink2)}
-.btn-soft-danger{background:transparent;border:1px solid #e0a09a;color:var(--accent);width:auto}
-.btn-soft-danger:hover{background:var(--accent-bg)}
+.btn-insta{background:var(--insta-bg);border:1px solid #f0b8d0;color:var(--insta);width:100%}
+.btn-insta:hover{background:#fce4ee}
+.btn-danger{background:transparent;border:1px solid #f0b0a0;color:var(--accent)}
+.btn-danger:hover{background:var(--accent-bg)}
+.btn-sm{padding:.42rem .9rem;font-size:.72rem}
 
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:2.2rem}
-.err{font-size:.78rem;color:var(--accent);margin-top:7px;min-height:1.1em}
-.hint{font-size:.75rem;color:var(--ink3);text-align:center;margin-top:.85rem}
-.hint a{color:var(--accent);cursor:pointer;text-decoration:none}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:2rem}
+.err{font-size:.77rem;color:var(--accent);margin-top:6px;min-height:1em}
+.hint{font-size:.74rem;color:var(--ink3);text-align:center;margin-top:.8rem}
+.hint a{color:var(--accent);cursor:pointer}
 .hint a:hover{text-decoration:underline}
-.center-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2.5rem 1.5rem}
-.page-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:500;letter-spacing:-.5px;margin-bottom:.3rem}
+
+.center-wrap{flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:2.5rem 1.25rem}
+.page-title{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:500;
+  letter-spacing:-.5px;margin-bottom:.25rem}
 .page-title em{font-style:italic;color:var(--accent)}
-.page-sub{font-size:.82rem;color:var(--ink3);margin-bottom:2rem}
+.page-sub{font-size:.8rem;color:var(--ink3);margin-bottom:1.8rem}
 
-/* home */
-.home-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:4rem 1.5rem 3rem;text-align:center}
-.home-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,6vw,4rem);
-  font-weight:500;line-height:1.1;letter-spacing:-1.5px;margin-bottom:1.2rem}
-.home-hero h1 em{font-style:italic;color:var(--accent)}
-.home-hero p{font-size:.95rem;color:var(--ink2);max-width:400px;line-height:1.75;margin-bottom:2.5rem}
-.home-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.home-ctas .btn{font-size:.8rem;padding:.82rem 2rem;width:auto}
-.steps-section{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+/* ── HOME ── */
+.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:4rem 1.25rem 2rem;text-align:center}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,3.6rem);
+  font-weight:500;line-height:1.1;letter-spacing:-1.5px;margin-bottom:1rem}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{font-size:.92rem;color:var(--ink2);max-width:380px;line-height:1.75;margin-bottom:2.2rem}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.hero-btns .btn{width:auto;padding:.8rem 1.8rem}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
   background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.step-item{background:var(--surface);padding:2rem 1.5rem;text-align:center}
-.step-num{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:600;
-  color:var(--ink3);margin:0 auto .85rem}
-.step-item h3{font-size:.88rem;font-weight:600;margin-bottom:.3rem}
-.step-item p{font-size:.78rem;color:var(--ink3);line-height:1.6}
+.how-step{background:var(--surface);padding:1.8rem 1.25rem;text-align:center}
+.how-n{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.72rem;font-weight:600;color:var(--ink3);margin:0 auto .75rem}
+.how-step h3{font-size:.85rem;font-weight:600;margin-bottom:.25rem}
+.how-step p{font-size:.75rem;color:var(--ink3);line-height:1.55}
 
-/* profile / send page */
-.profile-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2.5rem 1.5rem}
-.profile-card{width:100%;max-width:460px}
-.p-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.8rem;
-  padding-bottom:1.8rem;border-bottom:1px solid var(--border)}
-.avatar{width:52px;height:52px;border-radius:50%;flex-shrink:0;background:var(--accent-bg);
-  border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent)}
-.p-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:500;letter-spacing:-.3px}
-.p-insta{font-size:.78rem;color:var(--accent);margin-top:3px;cursor:pointer;text-decoration:none}
-.p-insta:hover{text-decoration:underline}
-.char-row{font-size:.71rem;color:var(--ink3);text-align:right;margin-top:5px;margin-bottom:1.1rem}
-.anon-note{display:flex;align-items:center;gap:6px;margin-top:1rem;font-size:.76rem;
-  color:var(--ink3);justify-content:center}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--success);flex-shrink:0}
-.sender-badge{display:flex;align-items:center;gap:8px;background:var(--surface2);
-  border:1px solid var(--border);border-radius:var(--r-sm);padding:.6rem .9rem;
-  margin-bottom:1.2rem;font-size:.78rem;color:var(--ink3)}
-.sender-badge strong{color:var(--ink);font-weight:600}
-.sender-badge a{color:var(--accent);cursor:pointer;margin-left:auto;font-size:.72rem}
-.sender-badge a:hover{text-decoration:underline}
-.success-box{display:none;flex-direction:column;align-items:center;text-align:center;padding:1rem 0}
-.s-ico{width:52px;height:52px;border-radius:50%;background:var(--success-bg);
+/* ── PROFILE / SEND ── */
+.profile-outer{flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:2rem 1.25rem;background:var(--bg)}
+.profile-shell{width:100%;max-width:440px}
+
+.p-avatar-wrap{text-align:center;margin-bottom:1.5rem}
+.p-avatar{width:72px;height:72px;border-radius:50%;background:var(--accent-bg);
+  border:2.5px solid var(--accent);display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--accent);
+  margin:0 auto .75rem}
+.p-name{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:500;letter-spacing:-.3px}
+.p-handle{font-size:.8rem;color:var(--accent);margin-top:2px;
+  text-decoration:none;cursor:pointer}
+.p-handle:hover{text-decoration:underline}
+.p-prompt{font-size:.85rem;color:var(--ink3);margin-top:.5rem}
+
+.send-card{background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.5rem}
+.char-row{font-size:.7rem;color:var(--ink3);text-align:right;margin-top:4px;margin-bottom:1rem}
+.anon-badge{display:flex;align-items:center;gap:5px;justify-content:center;
+  font-size:.74rem;color:var(--ink3);margin-top:.85rem}
+.anon-dot{width:5px;height:5px;border-radius:50%;background:var(--success);flex-shrink:0}
+
+.sent-state{display:none;flex-direction:column;align-items:center;
+  text-align:center;padding:.5rem 0}
+.sent-ico{width:50px;height:50px;border-radius:50%;background:var(--success-bg);
   border:1.5px solid var(--success);display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;margin-bottom:1rem;color:var(--success)}
-.success-box h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
-.success-box p{font-size:.83rem;color:var(--ink2);line-height:1.65}
-.again-btn{margin-top:1.1rem;padding:.55rem 1.4rem;background:transparent;
+  font-size:1.3rem;color:var(--success);margin-bottom:.85rem}
+.sent-state h3{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:.35rem}
+.sent-state p{font-size:.82rem;color:var(--ink2);line-height:1.6}
+.send-again{margin-top:1rem;padding:.5rem 1.3rem;background:transparent;
   border:1px solid var(--border2);border-radius:var(--r-sm);color:var(--ink3);
-  font-family:'Syne',sans-serif;font-size:.8rem;font-weight:500;text-transform:uppercase;
+  font-family:'Syne',sans-serif;font-size:.78rem;font-weight:500;text-transform:uppercase;
   letter-spacing:.3px;cursor:pointer;transition:all .2s}
-.again-btn:hover{border-color:var(--accent);color:var(--accent)}
-.login-prompt{text-align:center;padding:1.5rem 0}
-.login-prompt p{font-size:.9rem;color:var(--ink2);margin-bottom:1.2rem;line-height:1.6}
-.login-prompt .btn{width:auto;margin:0 auto;display:inline-block}
+.send-again:hover{border-color:var(--accent);color:var(--accent)}
 
-/* inbox */
-.inbox-login{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem}
-.inbox-main{flex:1;display:none;flex-direction:column}
-.inbox-topbar{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;
-  border-bottom:1px solid var(--border);background:var(--surface);flex-wrap:wrap;gap:10px}
-.inbox-topbar h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:500;letter-spacing:-.3px}
-.inbox-topbar p{font-size:.75rem;color:var(--ink3);margin-top:2px}
-.itop-btns{display:flex;gap:8px;flex-wrap:wrap}
-.itop-btns .btn{padding:.45rem .95rem;font-size:.72rem}
-.inbox-body{padding:1.5rem 2rem;max-width:780px;width:100%;margin:0 auto}
-.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}
-.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:1rem 1.1rem}
-.stat small{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.4px;
-  color:var(--ink3);display:block;margin-bottom:3px}
-.stat strong{font-size:1.5rem;font-weight:500}
-.filter-row{display:flex;gap:8px;margin-bottom:1.2rem;flex-wrap:wrap;align-items:center}
-.fb{padding:.32rem .85rem;font-size:.72rem;font-weight:600;letter-spacing:.3px;
+.login-prompt-box{background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.75rem;text-align:center}
+.login-prompt-box p{font-size:.88rem;color:var(--ink2);line-height:1.65;margin-bottom:1.25rem}
+.login-prompt-box .btn{width:auto;margin:0 auto}
+
+/* ── INBOX ── */
+.inbox-bar{display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 1.5rem;border-bottom:1px solid var(--border);
+  background:var(--surface);flex-wrap:wrap;gap:8px}
+.inbox-bar h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:500;letter-spacing:-.3px}
+.inbox-bar p{font-size:.72rem;color:var(--ink3);margin-top:1px}
+.ibar-btns{display:flex;gap:7px}
+
+.inbox-body{padding:1.25rem 1.5rem;max-width:700px;width:100%;margin:0 auto}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:1.25rem}
+.stat{background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-sm);padding:.85rem 1rem}
+.stat small{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.4px;
+  color:var(--ink3);display:block;margin-bottom:2px}
+.stat strong{font-size:1.4rem;font-weight:500}
+
+.frow{display:flex;gap:7px;margin-bottom:1.1rem;flex-wrap:wrap;align-items:center}
+.fb{padding:.3rem .8rem;font-size:.7rem;font-weight:600;letter-spacing:.3px;
   text-transform:uppercase;border-radius:20px;border:1px solid var(--border);
-  background:transparent;color:var(--ink3);cursor:pointer;font-family:'Syne',sans-serif;transition:all .2s}
+  background:transparent;color:var(--ink3);cursor:pointer;
+  font-family:'Syne',sans-serif;transition:all .18s}
 .fb.on,.fb:hover{background:var(--accent-bg);border-color:var(--accent);color:var(--accent)}
-.srch{flex:1;min-width:130px;border-radius:20px;background:var(--surface);font-size:.8rem;
-  padding:.32rem 1rem;border:1px solid var(--border)}
-.msgs{display:flex;flex-direction:column;gap:10px}
-.mc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
-  padding:1.2rem 1.4rem;transition:border-color .2s,box-shadow .2s}
-.mc:hover{border-color:var(--border2);box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.mh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;gap:8px}
-.mmeta{font-size:.73rem;color:var(--ink3);display:flex;flex-direction:column;gap:2px}
-.mmeta .dev{color:var(--accent);font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.2px}
-.mtime{font-size:.7rem;color:var(--ink3);white-space:nowrap}
-.mtxt{font-size:.92rem;line-height:1.7;margin-bottom:.8rem}
-.mfoot{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.badge{font-size:.65rem;font-weight:600;letter-spacing:.3px;text-transform:uppercase;
-  padding:2px 8px;border-radius:20px;border:1px solid}
-.b-dev{border-color:#e0a09a;color:var(--accent);background:var(--accent-bg)}
-.b-info{border-color:var(--border2);color:var(--ink3)}
-.delbtn{margin-left:auto;padding:3px 9px;font-size:.68rem;font-weight:600;text-transform:uppercase;
-  letter-spacing:.3px;background:transparent;border:1px solid var(--border);border-radius:6px;
-  color:var(--ink3);cursor:pointer;font-family:'Syne',sans-serif;transition:all .2s}
-.delbtn:hover{border-color:var(--accent);color:var(--accent)}
-.empty{text-align:center;padding:4rem 1rem;color:var(--ink3)}
-.empty h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--ink);margin-bottom:.4rem}
+.srch{flex:1;min-width:120px;border-radius:20px;background:var(--surface);
+  font-size:.78rem;padding:.3rem .9rem;border:1px solid var(--border)}
 
-/* super admin */
-.sa-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem;background:#111}
-.sa-card{background:#1a1814;border:1px solid rgba(255,255,255,.1);border-radius:var(--r);
-  padding:2.5rem;width:100%;max-width:360px}
-.sa-card h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;margin-bottom:.2rem}
-.sa-card p{font-size:.8rem;color:#777;margin-bottom:1.8rem}
-.sa-card label{color:#777}
-.sa-card input{background:#222;border-color:rgba(255,255,255,.1);color:#fff}
-.sa-card input:focus{border-color:var(--accent)}
-.sa-card input::placeholder{color:#444}
+.msgs{display:flex;flex-direction:column;gap:9px}
+.mc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:1.1rem 1.25rem;transition:border-color .18s}
+.mc:hover{border-color:var(--border2)}
+.mc-top{display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:.5rem}
+.mc-time{font-size:.68rem;color:var(--ink3);white-space:nowrap}
+.mc-device{font-size:.7rem;color:var(--ink3)}
+.mc-txt{font-size:.92rem;line-height:1.7;margin-bottom:.85rem;color:var(--ink)}
+.mc-actions{display:flex;gap:7px;align-items:center}
+.reply-btn{display:flex;align-items:center;gap:5px;padding:.38rem .85rem;
+  font-size:.72rem;font-weight:600;letter-spacing:.2px;text-transform:uppercase;
+  background:var(--insta-bg);border:1px solid #f0b8d0;border-radius:6px;
+  color:var(--insta);cursor:pointer;font-family:'Syne',sans-serif;transition:all .18s;
+  text-decoration:none}
+.reply-btn:hover{background:#fce4ee}
+.del-btn{margin-left:auto;padding:.3rem .75rem;font-size:.68rem;font-weight:600;
+  text-transform:uppercase;background:transparent;border:1px solid var(--border);
+  border-radius:6px;color:var(--ink3);cursor:pointer;font-family:'Syne',sans-serif;
+  transition:all .18s}
+.del-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+.empty{text-align:center;padding:3.5rem 1rem;color:var(--ink3)}
+.empty h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--ink);margin-bottom:.35rem}
+.empty p{font-size:.8rem}
+
+/* ── SUPER ADMIN ── */
+.sa-bg{flex:1;display:flex;align-items:center;justify-content:center;
+  padding:2rem;background:#0f0e0c}
+.sa-login-card{background:#1c1a16;border:1px solid rgba(255,255,255,.09);
+  border-radius:var(--r);padding:2.5rem;width:100%;max-width:340px}
+.sa-login-card h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:#f0ede6;margin-bottom:.2rem}
+.sa-login-card p{font-size:.78rem;color:#666;margin-bottom:1.6rem}
+.sa-login-card label{color:#666}
+.sa-login-card input{background:#252319;border-color:rgba(255,255,255,.09);color:#f0ede6}
+.sa-login-card input:focus{border-color:var(--accent)}
+.sa-login-card input::placeholder{color:#3a3830}
+
 .sa-main{flex:1;display:none;flex-direction:column}
-.sa-topbar{display:flex;align-items:center;justify-content:space-between;
-  padding:1rem 2rem;background:var(--ink);color:#fff;flex-wrap:wrap;gap:10px}
-.sa-logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff}
+.sa-bar{display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 1.5rem;background:#18160f;flex-wrap:wrap;gap:8px}
+.sa-bar-left{display:flex;align-items:center;gap:10px}
+.sa-logo{font-family:'Playfair Display',serif;font-size:1.05rem;color:#f0ede6}
 .sa-logo em{font-style:italic;color:var(--accent2)}
-.sa-tag{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;
-  background:var(--accent);color:#fff;padding:2px 8px;border-radius:4px;margin-left:8px}
-.sa-body{padding:1.5rem 2rem;max-width:1000px;width:100%;margin:0 auto}
-.sa-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
-.sa-frow{display:flex;gap:8px;margin-bottom:1.2rem;flex-wrap:wrap;align-items:center}
-.sa-table{width:100%;border-collapse:collapse;font-size:.82rem}
-.sa-table th{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;
-  color:var(--ink3);padding:.6rem 1rem;text-align:left;
+.sa-badge{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;
+  background:var(--accent);color:#fff;padding:2px 7px;border-radius:3px}
+.sa-bar-btns{display:flex;gap:6px}
+
+.sa-body{padding:1.25rem 1.5rem;max-width:1100px;width:100%;margin:0 auto}
+.sa-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:1.25rem}
+.sa-frow{display:flex;gap:7px;margin-bottom:1.1rem;flex-wrap:wrap;align-items:center}
+
+.sa-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.sa-table th{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;
+  color:var(--ink3);padding:.55rem 1rem;text-align:left;
   border-bottom:2px solid var(--border);background:var(--surface);white-space:nowrap}
-.sa-table td{padding:.9rem 1rem;border-bottom:1px solid var(--border);
+.sa-table td{padding:.85rem 1rem;border-bottom:1px solid var(--border);
   vertical-align:top;background:var(--surface)}
 .sa-table tr:hover td{background:var(--surface2)}
-.sa-person{display:flex;flex-direction:column;gap:2px}
-.sa-person strong{font-size:.82rem;font-weight:600;color:var(--ink)}
-.sa-person span{font-size:.72rem;color:var(--accent)}
-.sa-msg-cell{font-size:.88rem;line-height:1.6;max-width:240px;color:var(--ink)}
-.sa-fp{display:flex;flex-direction:column;gap:1px;font-size:.72rem;color:var(--ink2)}
-.sa-fp .dev{font-weight:600;color:var(--ink);font-size:.76rem}
-.sa-arrow{color:var(--ink3);font-size:1rem;padding:0 .25rem}
+.sa-person{display:flex;flex-direction:column;gap:1px}
+.sa-person strong{font-size:.8rem;font-weight:600;color:var(--ink)}
+.sa-person a{font-size:.7rem;color:var(--accent);text-decoration:none}
+.sa-person a:hover{text-decoration:underline}
+.sa-msg-cell{font-size:.86rem;line-height:1.6;max-width:220px;color:var(--ink)}
+.sa-device{font-size:.7rem;color:var(--ink2);display:flex;flex-direction:column;gap:1px}
+.sa-device span:first-child{font-weight:600;color:var(--ink);font-size:.74rem}
+.sa-arr{text-align:center;color:var(--ink3);font-size:1rem}
 
-/* shared utils */
-.spinner{width:18px;height:18px;border:2px solid var(--border2);border-top-color:var(--accent);
-  border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
+/* ── SHARED ── */
+.notfound{text-align:center;padding:3rem 1rem}
+.notfound h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--accent);margin-bottom:.4rem}
+.notfound p{font-size:.83rem;color:var(--ink2)}
+.spinner{width:16px;height:16px;border:2px solid var(--border2);border-top-color:var(--accent);
+  border-radius:50%;animation:spin .65s linear infinite;display:inline-block}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loading-row{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--ink3);
+.loading{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--ink3);
   padding:2rem;justify-content:center}
-#toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);
-  background:var(--ink);color:#fff;font-size:.8rem;font-weight:500;
-  padding:.65rem 1.3rem;border-radius:30px;opacity:0;transition:all .3s;
+#toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(16px);
+  background:var(--ink);color:#fff;font-size:.78rem;font-weight:500;
+  padding:.6rem 1.2rem;border-radius:30px;opacity:0;transition:all .25s;
   pointer-events:none;z-index:999;white-space:nowrap}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.notfound{text-align:center;padding:3rem 1rem}
-.notfound h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--accent);margin-bottom:.5rem}
-.notfound p{font-size:.85rem;color:var(--ink2)}
 </style>
 </head>
 <body>
 <div id="toast"></div>
 
-<!-- ══ HOME ══ -->
+<!-- ════════════ HOME ════════════ -->
 <div id="homeView" class="view active">
   <nav class="topbar">
     <div class="logo" onclick="goto('homeView')">College<em>Whisper</em></div>
-    <div class="nav-links">
-      <div class="nav-user" id="navUser" style="display:none">
-        Logged in as <span id="navName"></span>
-        <a onclick="logoutUser()" style="color:var(--ink3);font-size:.72rem;cursor:pointer;text-transform:uppercase;letter-spacing:.3px">Log out</a>
-      </div>
-      <a onclick="showAuthOrInbox()" id="navInbox" style="display:none">My inbox</a>
-      <a onclick="goto('loginView')" id="navLogin">Log in</a>
-      <a onclick="goto('signupView')" id="navSignup">Sign up</a>
+    <div class="nav">
+      <a onclick="goto('signupView')" id="nav-signup">Sign up</a>
+      <div class="nav-sep"></div>
+      <a onclick="goto('loginView')" id="nav-login">Log in</a>
+      <a onclick="showInbox()" id="nav-inbox" style="display:none">My inbox</a>
+      <div class="nav-sep" id="nav-sep2" style="display:none"></div>
+      <a onclick="logoutUser()" id="nav-logout" style="display:none">Log out</a>
     </div>
   </nav>
-  <div class="home-hero">
-    <h1>Say it<br><em>anonymously.</em></h1>
-    <p>Create your profile, share your link, and receive honest messages from your college friends.</p>
-    <div class="home-ctas">
-      <button class="btn btn-primary" onclick="goto('signupView')">Create my profile</button>
-      <button class="btn btn-outline" onclick="showAuthOrInbox()">Open my inbox</button>
+  <div class="hero">
+    <h1>What do people<br>really think <em>about you?</em></h1>
+    <p>Create your profile, share the link on your Instagram story, and receive honest anonymous messages from anyone.</p>
+    <div class="hero-btns">
+      <button class="btn btn-primary" onclick="goto('signupView')">Get my link</button>
+      <button class="btn btn-outline" onclick="showInbox()">My inbox</button>
     </div>
   </div>
-  <div class="steps-section">
-    <div class="step-item"><div class="step-num">1</div><h3>Sign up</h3><p>Name + Instagram handle</p></div>
-    <div class="step-item"><div class="step-num">2</div><h3>Share your link</h3><p>Drop it in your college WhatsApp group</p></div>
-    <div class="step-item"><div class="step-num">3</div><h3>Read messages</h3><p>Private inbox, only you can see</p></div>
+  <div class="how">
+    <div class="how-step"><div class="how-n">1</div><h3>Sign up</h3><p>Name + Instagram, 20 seconds</p></div>
+    <div class="how-step"><div class="how-n">2</div><h3>Share on Instagram</h3><p>Put your link in your story</p></div>
+    <div class="how-step"><div class="how-n">3</div><h3>Reply on Instagram</h3><p>Tap reply and open their profile</p></div>
   </div>
 </div>
 
-<!-- ══ SIGNUP ══ -->
+<!-- ════════════ SIGN UP ════════════ -->
 <div id="signupView" class="view">
   <nav class="topbar">
     <div class="logo" onclick="goto('homeView')">College<em>Whisper</em></div>
-    <div class="nav-links"><a onclick="goto('homeView')">← Back</a></div>
+    <div class="nav"><a onclick="goto('homeView')">← Back</a></div>
   </nav>
   <div class="center-wrap">
     <div class="page-title">Create <em>profile</em></div>
-    <p class="page-sub">Takes 20 seconds. No email needed.</p>
-    <div class="card" style="width:100%;max-width:400px">
-      <label>Your full name</label>
+    <p class="page-sub">Free. No email needed.</p>
+    <div class="card" style="width:100%;max-width:390px">
+      <label>Full name</label>
       <input id="su-name" type="text" placeholder="e.g. Rahul Sharma" autocomplete="off"/>
       <label>Instagram handle</label>
-      <div class="insta-row"><span>@</span><input id="su-insta" type="text" placeholder="your_ig_handle" autocomplete="off"/></div>
-      <p style="font-size:.72rem;color:var(--ink3);margin-top:5px">This is your username and profile link</p>
+      <div class="ig-row"><span>@</span>
+        <input id="su-insta" type="text" placeholder="your_handle" autocomplete="off"/>
+      </div>
+      <p style="font-size:.7rem;color:var(--ink3);margin-top:4px">This becomes your username + profile link</p>
       <label>Password</label>
       <input id="su-pass" type="password" placeholder="Min 4 characters"/>
       <div class="err" id="su-err"></div>
-      <div style="margin-top:1.4rem"><button class="btn btn-primary" id="su-btn" onclick="doSignup()">Create my profile</button></div>
+      <div style="margin-top:1.3rem">
+        <button class="btn btn-primary" id="su-btn" onclick="doSignup()">Create my profile</button>
+      </div>
       <p class="hint">Already have one? <a onclick="goto('loginView')">Log in →</a></p>
     </div>
   </div>
 </div>
 
-<!-- ══ LOGIN ══ -->
+<!-- ════════════ LOG IN ════════════ -->
 <div id="loginView" class="view">
   <nav class="topbar">
     <div class="logo" onclick="goto('homeView')">College<em>Whisper</em></div>
-    <div class="nav-links"><a onclick="goto('homeView')">← Back</a></div>
+    <div class="nav"><a onclick="goto('homeView')">← Back</a></div>
   </nav>
   <div class="center-wrap">
     <div class="page-title">Welcome <em>back</em></div>
-    <p class="page-sub">Log in to send messages or check your inbox</p>
-    <div class="card" style="width:100%;max-width:400px">
+    <p class="page-sub">Log in to send or check your inbox</p>
+    <div class="card" style="width:100%;max-width:390px">
       <label>Instagram handle</label>
-      <div class="insta-row"><span>@</span><input id="li-insta" type="text" placeholder="your_ig_handle" autocomplete="off"/></div>
+      <div class="ig-row"><span>@</span>
+        <input id="li-insta" type="text" placeholder="your_handle" autocomplete="off"/>
+      </div>
       <label>Password</label>
       <input id="li-pass" type="password" placeholder="Your password"/>
       <div class="err" id="li-err"></div>
-      <div style="margin-top:1.4rem"><button class="btn btn-primary" id="li-btn" onclick="doLogin()">Log in</button></div>
+      <div style="margin-top:1.3rem">
+        <button class="btn btn-primary" id="li-btn" onclick="doLogin()">Log in</button>
+      </div>
       <p class="hint">No account? <a onclick="goto('signupView')">Sign up →</a></p>
     </div>
   </div>
 </div>
 
-<!-- ══ PROFILE / SEND ══ -->
+<!-- ════════════ PROFILE / SEND ════════════ -->
 <div id="profileView" class="view">
   <nav class="topbar">
     <div class="logo" onclick="goto('homeView')">College<em>Whisper</em></div>
-    <div class="nav-links">
-      <div class="nav-user" id="pNavUser" style="display:none">
-        <span id="pNavName"></span>
-        <a onclick="logoutUser()" style="color:var(--ink3);font-size:.72rem;cursor:pointer;text-transform:uppercase;letter-spacing:.3px">Log out</a>
-      </div>
+    <div class="nav">
       <a onclick="goto('homeView')">Home</a>
+      <div class="nav-sep"></div>
+      <a onclick="showInbox()" id="pv-inbox" style="display:none">My inbox</a>
+      <a onclick="logoutUser()" id="pv-logout" style="display:none">Log out</a>
+      <a onclick="rememberAndGo('loginView')" id="pv-login">Log in</a>
     </div>
   </nav>
-  <div class="profile-wrap">
-    <div class="card profile-card" id="profileCard">
-      <div class="loading-row"><div class="spinner"></div> Loading…</div>
+  <div class="profile-outer">
+    <div class="profile-shell" id="profileShell">
+      <div class="loading"><div class="spinner"></div> Loading…</div>
     </div>
   </div>
 </div>
 
-<!-- ══ INBOX ══ -->
+<!-- ════════════ INBOX ════════════ -->
 <div id="inboxView" class="view">
-  <div class="inbox-login" id="inboxLogin" style="display:none"><!-- redirects to loginView --></div>
-  <div class="inbox-main" id="inboxMain">
-    <div class="inbox-topbar">
-      <div>
-        <h2 id="ib-title">Inbox</h2>
-        <p id="ib-sub"></p>
-      </div>
-      <div class="itop-btns">
-        <button class="btn btn-ghost" onclick="copyMyLink()">Copy my link</button>
-        <button class="btn btn-soft-danger" onclick="clearInbox()">Clear all</button>
-        <button class="btn btn-ghost" onclick="logoutUser()">Log out</button>
-      </div>
+  <div class="inbox-bar">
+    <div>
+      <h2 id="ib-name">Inbox</h2>
+      <p id="ib-handle"></p>
     </div>
-    <div class="inbox-body">
-      <div class="stats-row">
-        <div class="stat"><small>Total</small><strong id="st-total">0</strong></div>
-        <div class="stat"><small>Unique senders</small><strong id="st-uniq">0</strong></div>
-        <div class="stat"><small>Today</small><strong id="st-today">0</strong></div>
-      </div>
-      <div class="filter-row">
-        <button class="fb on" onclick="setF('all',this)">All</button>
-        <button class="fb" onclick="setF('today',this)">Today</button>
-        <input class="srch" type="text" id="srch" placeholder="Search messages…" oninput="renderInbox()"/>
-      </div>
-      <div class="msgs" id="msgList"></div>
+    <div class="ibar-btns">
+      <button class="btn btn-ghost btn-sm" onclick="copyLink()">Copy my link</button>
+      <button class="btn btn-danger btn-sm" onclick="clearInbox()">Clear all</button>
+      <button class="btn btn-ghost btn-sm" onclick="logoutUser()">Log out</button>
     </div>
+  </div>
+  <div class="inbox-body">
+    <div class="stats-row">
+      <div class="stat"><small>Total</small><strong id="st-total">0</strong></div>
+      <div class="stat"><small>Senders</small><strong id="st-senders">0</strong></div>
+      <div class="stat"><small>Today</small><strong id="st-today">0</strong></div>
+    </div>
+    <div class="frow">
+      <button class="fb on" onclick="setF('all',this)">All</button>
+      <button class="fb" onclick="setF('today',this)">Today</button>
+      <input class="srch" type="text" id="ib-srch" placeholder="Search messages…" oninput="renderInbox()"/>
+    </div>
+    <div class="msgs" id="msgList"></div>
   </div>
 </div>
 
-<!-- ══ SUPER ADMIN ══ -->
+<!-- ════════════ SUPER ADMIN ════════════ -->
 <div id="adminView" class="view">
-  <div class="sa-wrap" id="saLoginWrap">
-    <div class="sa-card">
-      <h2>Site <em style="font-style:italic;color:#e8534a">Admin</em></h2>
+  <div class="sa-bg" id="saLoginWrap">
+    <div class="sa-login-card">
+      <h2>Admin <em style="font-style:italic;color:var(--accent2)">Portal</em></h2>
       <p>Full visibility — every sender, every receiver</p>
-      <label>Admin password</label>
-      <input id="sa-pass" type="password" placeholder="Enter admin password"/>
-      <div class="err" id="sa-err" style="margin-top:8px;color:#e8534a"></div>
-      <div style="margin-top:1.2rem"><button class="btn btn-primary" id="sa-btn" onclick="doAdminLogin()">Enter</button></div>
+      <label>Password</label>
+      <input id="sa-pass" type="password" placeholder="Admin password"/>
+      <div class="err" id="sa-err" style="margin-top:6px;color:#e86040"></div>
+      <div style="margin-top:1.1rem">
+        <button class="btn btn-primary" id="sa-btn" onclick="doAdminLogin()">Enter</button>
+      </div>
     </div>
   </div>
   <div class="sa-main" id="saMain">
-    <div class="sa-topbar">
-      <div>
+    <div class="sa-bar">
+      <div class="sa-bar-left">
         <span class="sa-logo">College<em>Whisper</em></span>
-        <span class="sa-tag">Super Admin</span>
+        <span class="sa-badge">Admin</span>
       </div>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-ghost" style="font-size:.72rem;padding:.4rem .9rem" onclick="exportCSV()">Export CSV</button>
-        <button class="btn btn-ghost" style="font-size:.72rem;padding:.4rem .9rem;border-color:rgba(255,255,255,.15);color:#aaa" onclick="saLogout()">Log out</button>
+      <div class="sa-bar-btns">
+        <button class="btn btn-ghost btn-sm" onclick="exportCSV()" style="border-color:rgba(255,255,255,.15);color:#aaa">Export CSV</button>
+        <button class="btn btn-ghost btn-sm" onclick="saLogout()" style="border-color:rgba(255,255,255,.1);color:#666">Log out</button>
       </div>
     </div>
     <div class="sa-body">
       <div class="sa-stats stats-row">
-        <div class="stat"><small>Total messages</small><strong id="sa-total">0</strong></div>
-        <div class="stat"><small>Total profiles</small><strong id="sa-profiles">0</strong></div>
-        <div class="stat"><small>Unique senders</small><strong id="sa-senders">0</strong></div>
+        <div class="stat"><small>Messages</small><strong id="sa-msgs">0</strong></div>
+        <div class="stat"><small>Profiles</small><strong id="sa-profs">0</strong></div>
+        <div class="stat"><small>Unique senders</small><strong id="sa-uniq">0</strong></div>
         <div class="stat"><small>Today</small><strong id="sa-today">0</strong></div>
       </div>
       <div class="sa-frow">
         <button class="fb on" onclick="setSAF('all',this)">All</button>
         <button class="fb" onclick="setSAF('today',this)">Today</button>
-        <input class="srch" type="text" id="sa-srch" placeholder="Search by name, handle, message…" oninput="renderAdmin()" style="flex:1;min-width:200px"/>
+        <input class="srch" type="text" id="sa-srch" placeholder="Search name, handle, message…"
+          oninput="renderAdmin()" style="flex:1;min-width:180px"/>
       </div>
       <div style="overflow-x:auto">
         <table class="sa-table">
-          <thead>
-            <tr>
-              <th>Sender</th>
-              <th style="padding:0 .5rem;text-align:center">→</th>
-              <th>Receiver</th>
-              <th>Message</th>
-              <th>Device</th>
-              <th>Time</th>
-            </tr>
-          </thead>
+          <thead><tr>
+            <th>Sender</th>
+            <th class="sa-arr">→</th>
+            <th>Receiver</th>
+            <th>Message</th>
+            <th>Device info</th>
+            <th>Time</th>
+          </tr></thead>
           <tbody id="saRows"></tbody>
         </table>
       </div>
@@ -407,31 +438,29 @@ label:first-child{margin-top:0}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// ══════════════════════════════════════════════
-//   PASTE YOUR SUPABASE CREDENTIALS HERE
-// ══════════════════════════════════════════════
-const SUPABASE_URL  = 'https://ztfedohluguvcquuuyts.supabase.co';
-const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0ZmVkb2hsdWd1dmNxdXV1eXRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyNzM3MzMsImV4cCI6MjA4OTg0OTczM30.STzaewpt4eMbkcTWdfNW3iHaNZXBaqODzDDik9oY4N0';
+// ════════════════════════════════════════════
+//  PASTE YOUR SUPABASE CREDENTIALS BELOW
+// ════════════════════════════════════════════
+const SUPABASE_URL  = 'PASTE_YOUR_PROJECT_URL_HERE';
+const SUPABASE_ANON = 'PASTE_YOUR_ANON_KEY_HERE';
 
-// ══════════════════════════════════════════════
-//   SUPER ADMIN CONFIG  — change both values!
-//   Your secret URL: yoursite.com#/sadmin-xk29q
-// ══════════════════════════════════════════════
-const ADMIN_SECRET   = 'xk29q';          // part of the secret URL — change this
-const ADMIN_PASSWORD = 'changeme123';     // admin login password  — change this
-// ══════════════════════════════════════════════
+// ════════════════════════════════════════════
+//  ADMIN CONFIG — change both before going live
+//  Secret URL: yoursite.com#/sadmin-YOURSECRET
+// ════════════════════════════════════════════
+const ADMIN_SECRET   = 'cw2024secret';   // ← change this (part of URL)
+const ADMIN_PASSWORD = 'changeme123';    // ← change this (login password)
+// ════════════════════════════════════════════
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
-
-// ── session (in-memory, gone on refresh = intentional) ──
 let SESSION = null; // { insta, name }
 
-// ── util ────────────────────────────────────────────────
-const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+// ── utils ────────────────────────────────────
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
 async function hashPass(p){
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(p));
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(p));
+  return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
 }
 
 function goto(v){
@@ -440,26 +469,16 @@ function goto(v){
   window.scrollTo(0,0);
 }
 
-function toast(msg,dur=2800){
+function toast(msg,dur=2600){
   const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
+  t.textContent=msg; t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),dur);
 }
 
 function setBtn(id,loading,label){
-  const b=document.getElementById(id);
-  if(!b) return;
+  const b=document.getElementById(id); if(!b) return;
   b.disabled=loading;
   b.innerHTML=loading?'<span class="spinner"></span>':label;
-}
-
-function getDevice(){
-  const u=navigator.userAgent;
-  if(/iPhone|iPad/.test(u)) return 'iOS';
-  if(/Android/.test(u)) return 'Android';
-  if(/Macintosh/.test(u)) return 'Mac';
-  if(/Windows/.test(u)) return 'Windows';
-  return 'Unknown';
 }
 
 function ago(iso){
@@ -472,27 +491,35 @@ function ago(iso){
 
 function fmt(iso){
   const d=new Date(iso);
-  return d.toLocaleDateString('en-IN',{day:'numeric',month:'short'})+' · '+
-         d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+  return d.toLocaleDateString('en-IN',{day:'numeric',month:'short'})+
+    ' · '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
 }
 
-// ── nav state ────────────────────────────────────────────
+function getDevice(){
+  const u=navigator.userAgent;
+  if(/iPhone|iPad/.test(u)) return 'iOS';
+  if(/Android/.test(u)) return 'Android';
+  if(/Macintosh/.test(u)) return 'Mac';
+  if(/Windows/.test(u)) return 'Windows';
+  return 'Unknown';
+}
+
+// ── nav ──────────────────────────────────────
 function updateNav(){
-  const loggedIn = !!SESSION;
-  document.getElementById('navUser').style.display  = loggedIn?'flex':'none';
-  document.getElementById('navInbox').style.display = loggedIn?'inline':'none';
-  document.getElementById('navLogin').style.display = loggedIn?'none':'inline';
-  document.getElementById('navSignup').style.display= loggedIn?'none':'inline';
-  if(loggedIn){
-    document.getElementById('navName').textContent=SESSION.name.split(' ')[0];
-    document.getElementById('pNavName').textContent=SESSION.name.split(' ')[0];
-    document.getElementById('pNavUser').style.display='flex';
-  } else {
-    document.getElementById('pNavUser').style.display='none';
-  }
+  const li=!!SESSION;
+  // home nav
+  document.getElementById('nav-signup').style.display = li?'none':'inline';
+  document.getElementById('nav-login').style.display  = li?'none':'inline';
+  document.getElementById('nav-inbox').style.display  = li?'inline':'none';
+  document.getElementById('nav-sep2').style.display   = li?'inline':'none';
+  document.getElementById('nav-logout').style.display = li?'inline':'none';
+  // profile nav
+  document.getElementById('pv-inbox').style.display   = li?'inline':'none';
+  document.getElementById('pv-logout').style.display  = li?'inline':'none';
+  document.getElementById('pv-login').style.display   = li?'none':'inline';
 }
 
-// ── signup ───────────────────────────────────────────────
+// ── signup ────────────────────────────────────
 async function doSignup(){
   const name  = document.getElementById('su-name').value.trim();
   const insta = document.getElementById('su-insta').value.trim().replace(/^@/,'').toLowerCase();
@@ -500,70 +527,54 @@ async function doSignup(){
   const err   = document.getElementById('su-err');
   err.textContent='';
 
-  if(!name||!insta||!pass){err.textContent='Please fill in all fields.';return;}
-  if(pass.length<4){err.textContent='Password must be at least 4 characters.';return;}
-  if(!/^[a-z0-9._]+$/.test(insta)){err.textContent='Handle can only have letters, numbers, dots, underscores.';return;}
+  if(!name||!insta||!pass){err.textContent='Fill in all fields.';return;}
+  if(pass.length<4){err.textContent='Password needs at least 4 characters.';return;}
+  if(!/^[a-z0-9._]+$/.test(insta)){err.textContent='Handle: only letters, numbers, dots, underscores.';return;}
 
   setBtn('su-btn',true,'');
+  const {data:ex}=await sb.from('profiles').select('insta').eq('insta',insta).single();
+  if(ex){err.textContent='That handle is already taken.';setBtn('su-btn',false,'Create my profile');return;}
 
-  const {data:existing}=await sb.from('profiles').select('insta').eq('insta',insta).single();
-  if(existing){err.textContent='That handle is already taken.';setBtn('su-btn',false,'Create my profile');return;}
-
-  const hashed = await hashPass(pass);
-  const {error}=await sb.from('profiles').insert({name,insta,pass:hashed});
-  if(error){err.textContent='Something went wrong: '+error.message;setBtn('su-btn',false,'Create my profile');return;}
+  const {error}=await sb.from('profiles').insert({name,insta,pass:await hashPass(pass)});
+  if(error){err.textContent='Error: '+error.message;setBtn('su-btn',false,'Create my profile');return;}
 
   SESSION={insta,name};
   updateNav();
   setBtn('su-btn',false,'Create my profile');
   toast('Profile created! 🎉');
 
-  const after=sessionStorage.getItem('afterLogin');
-  if(after){
-    sessionStorage.removeItem('afterLogin');
-    const link=location.href.split('#')[0]+'#/p/'+insta;
-    setTimeout(()=>{
-      if(confirm('Profile created!\n\nYour shareable link:\n'+link+'\n\nCopy it to share?')){
-        navigator.clipboard.writeText(link).catch(()=>{});
-      }
-    },400);
-    goto('profileView');
-    location.hash='/p/'+after;
-    loadProfile(after);
-  } else {
-    const link=location.href.split('#')[0]+'#/p/'+insta;
-    setTimeout(()=>{
-      if(confirm('Profile created!\n\nYour shareable link:\n'+link+'\n\nCopy it to share?')){
-        navigator.clipboard.writeText(link).catch(()=>{});
-      }
-    },400);
-    goto('inboxView');
-    openInbox();
-  }
+  // show their link
+  const link=baseURL()+'#/p/'+insta;
+  setTimeout(()=>{
+    if(confirm('Your shareable link:\n'+link+'\n\nCopy it to share on Instagram?'))
+      navigator.clipboard.writeText(link).catch(()=>{});
+  },300);
+
+  // go to inbox
+  goto('inboxView');
+  openInbox();
 }
 
-// ── login ─────────────────────────────────────────────────
+// ── login ─────────────────────────────────────
 async function doLogin(){
-  const insta = document.getElementById('li-insta').value.trim().replace(/^@/,'').toLowerCase();
-  const pass  = document.getElementById('li-pass').value;
-  const err   = document.getElementById('li-err');
+  const insta=document.getElementById('li-insta').value.trim().replace(/^@/,'').toLowerCase();
+  const pass =document.getElementById('li-pass').value;
+  const err  =document.getElementById('li-err');
   err.textContent='';
 
-  if(!insta||!pass){err.textContent='Please fill in both fields.';return;}
+  if(!insta||!pass){err.textContent='Fill in both fields.';return;}
   setBtn('li-btn',true,'');
 
-  const hashed=await hashPass(pass);
   const {data:p,error}=await sb.from('profiles').select('name,insta,pass').eq('insta',insta).single();
-
   if(error||!p){err.textContent='Profile not found.';setBtn('li-btn',false,'Log in');return;}
-  if(p.pass!==hashed){err.textContent='Wrong password.';setBtn('li-btn',false,'Log in');return;}
+  if(p.pass!==await hashPass(pass)){err.textContent='Wrong password.';setBtn('li-btn',false,'Log in');return;}
 
   SESSION={insta:p.insta,name:p.name};
   updateNav();
   setBtn('li-btn',false,'Log in');
   toast('Welcome back, '+p.name.split(' ')[0]+'!');
 
-  // if they came from a profile link, send them back there
+  // redirect back to profile if they came from one
   const after=sessionStorage.getItem('afterLogin');
   if(after){
     sessionStorage.removeItem('afterLogin');
@@ -575,115 +586,36 @@ async function doLogin(){
     openInbox();
   }
 }
-
 document.getElementById('li-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 
 function logoutUser(){
-  SESSION=null;
-  updateNav();
-  goto('homeView');
-  location.hash='';
+  SESSION=null; updateNav();
+  goto('homeView'); location.hash='';
   toast('Logged out');
 }
 
-function showAuthOrInbox(){
+function showInbox(){
   if(SESSION){goto('inboxView');openInbox();}
   else goto('loginView');
 }
 
-// ── inbox ────────────────────────────────────────────────
-let CF='all';
-
-function openInbox(){
-  if(!SESSION){goto('loginView');return;}
-  document.getElementById('inboxMain').style.display='flex';
-  document.getElementById('ib-title').textContent=SESSION.name.split(' ')[0]+"'s Inbox";
-  document.getElementById('ib-sub').textContent='@'+SESSION.insta;
-  renderInbox();
-}
-
-function setF(f,btn){
-  CF=f;
-  document.querySelectorAll('#inboxView .fb').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-  renderInbox();
-}
-
-async function renderInbox(){
-  if(!SESSION) return;
-  const list=document.getElementById('msgList');
-  list.innerHTML='<div class="loading-row"><div class="spinner"></div> Loading…</div>';
-
-  let q=sb.from('messages').select('*').eq('recipient',SESSION.insta).order('created_at',{ascending:false});
-  const today=new Date();today.setHours(0,0,0,0);
-  if(CF==='today') q=q.gte('created_at',today.toISOString());
-
-  const {data:msgs,error}=await q;
-  if(error){list.innerHTML='<div class="empty"><h3>Error</h3><p>'+esc(error.message)+'</p></div>';return;}
-
-  const sq=document.getElementById('srch').value.toLowerCase();
-  const filtered=sq?msgs.filter(m=>m.text.toLowerCase().includes(sq)):msgs;
-
-  // stats
-  const {data:all}=await sb.from('messages').select('sender,created_at').eq('recipient',SESSION.insta);
-  const todayStr=new Date().toDateString();
-  document.getElementById('st-total').textContent=all?.length||0;
-  document.getElementById('st-uniq').textContent=new Set(all?.map(m=>m.sender)||[]).size;
-  document.getElementById('st-today').textContent=all?.filter(m=>new Date(m.created_at).toDateString()===todayStr).length||0;
-
-  if(!filtered.length){
-    list.innerHTML=`<div class="empty"><h3>${all?.length?'No matches':'No messages yet'}</h3>
-      <p>${all?.length?'Try a different filter':'Share your link to start receiving messages'}</p></div>`;
-    return;
+// remembers which profile they were on, then navigates
+function rememberAndGo(view){
+  const h=location.hash;
+  if(h.startsWith('#/p/')){
+    sessionStorage.setItem('afterLogin',h.slice(4));
   }
-
-  // receiver sees NO sender info — just message + device fingerprint
-  list.innerHTML=filtered.map(m=>`
-    <div class="mc" id="mc-${m.id}">
-      <div class="mh">
-        <div class="mmeta">
-          <span class="dev">${esc(m.device||'Unknown')}</span>
-          <span>${esc(m.timezone||'')} · ${esc(m.language||'')} · ${esc(m.screen||'')}</span>
-        </div>
-        <div class="mtime">${ago(m.created_at)}</div>
-      </div>
-      <div class="mtxt">${esc(m.text)}</div>
-      <div class="mfoot">
-        <span class="badge b-dev">${esc(m.platform||'')}</span>
-        <span class="badge b-info">${esc(m.timezone||'')}</span>
-        <button class="delbtn" onclick="delMsg('${m.id}')">Delete</button>
-      </div>
-    </div>`).join('');
+  goto(view);
 }
 
-async function delMsg(id){
-  await sb.from('messages').delete().eq('id',id);
-  document.getElementById('mc-'+id)?.remove();
-  toast('Deleted');
-  renderInbox();
-}
-
-async function clearInbox(){
-  if(!SESSION||!confirm('Delete all your messages?')) return;
-  await sb.from('messages').delete().eq('recipient',SESSION.insta);
-  toast('Inbox cleared');
-  renderInbox();
-}
-
-function copyMyLink(){
-  if(!SESSION) return;
-  const link=location.href.split('#')[0]+'#/p/'+SESSION.insta;
-  navigator.clipboard.writeText(link).then(()=>toast('Link copied! 🔗'));
-}
-
-// ── profile / send page ──────────────────────────────────
+// ── profile page ──────────────────────────────
 async function loadProfile(handle){
-  const card=document.getElementById('profileCard');
-  card.innerHTML='<div class="loading-row"><div class="spinner"></div> Loading…</div>';
+  const shell=document.getElementById('profileShell');
+  shell.innerHTML='<div class="loading"><div class="spinner"></div> Loading…</div>';
 
   const {data:p,error}=await sb.from('profiles').select('name,insta').eq('insta',handle).single();
   if(error||!p){
-    card.innerHTML=`<div class="notfound"><h2>Profile not found</h2>
+    shell.innerHTML=`<div class="notfound"><h2>Not found</h2>
       <p>This link is invalid or the person hasn't signed up yet.</p><br>
       <button class="btn btn-primary" style="width:auto;padding:.7rem 1.8rem;margin-top:.5rem"
         onclick="goto('signupView')">Create your own</button></div>`;
@@ -691,43 +623,57 @@ async function loadProfile(handle){
   }
 
   const initials=p.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-  const firstName=esc(p.name.split(' ')[0]);
+  const first=esc(p.name.split(' ')[0]);
 
-  // build send form or login prompt based on session
-  const sendSection = SESSION
-    ? (SESSION.insta===handle
-        ? `<div style="text-align:center;padding:1rem 0;color:var(--ink3);font-size:.85rem">This is your own profile 😄<br>Share the link with friends!</div>`
-        : `<div class="sender-badge">
-            Sending as <strong>${esc(SESSION.name)}</strong> <span style="color:var(--ink3)">@${esc(SESSION.insta)}</span>
-            <a onclick="logoutUser()">Not you?</a>
-           </div>
-           <div id="sendForm">
-             <textarea id="msgTxt" placeholder="Send ${firstName} an anonymous message…" maxlength="500" rows="5"></textarea>
-             <div class="char-row"><span id="cc">0</span> / 500</div>
-             <button class="btn btn-primary" id="send-btn" onclick="sendMsg('${handle}')">Send anonymously</button>
-             <div class="anon-note"><div class="dot"></div>${firstName} won't see your name — only the admin can</div>
-           </div>
-           <div class="success-box" id="successBox">
-             <div class="s-ico">✓</div><h3>Message sent!</h3>
-             <p>Delivered to ${firstName}.<br>They can't see it was you.</p>
-             <button class="again-btn" onclick="resetSend()">Send another</button>
-           </div>`)
-    : `<div class="login-prompt">
-         <p>You need to be logged in to send a message.<br>Don't worry — <strong>${firstName}</strong> won't see who you are.</p>
-         <button class="btn btn-primary" style="width:auto;padding:.75rem 2rem"
-           onclick="sessionStorage.setItem('afterLogin','${handle}');goto('loginView')">Log in to send</button>
-         <p style="margin-top:.75rem;font-size:.75rem;color:var(--ink3)">No account? <a onclick="sessionStorage.setItem('afterLogin','${handle}');goto('signupView')" style="color:var(--accent);cursor:pointer">Sign up free</a></p>
-       </div>`;
+  // header always shows
+  const header=`
+    <div class="p-avatar-wrap">
+      <div class="p-avatar">${initials}</div>
+      <div class="p-name">${esc(p.name)}</div>
+      <a class="p-handle" href="https://instagram.com/${esc(p.insta)}" target="_blank">@${esc(p.insta)}</a>
+      <div class="p-prompt">Send me an anonymous message 👇</div>
+    </div>`;
 
-  card.innerHTML=`
-    <div class="p-header">
-      <div class="avatar">${initials}</div>
-      <div>
-        <div class="p-name">${esc(p.name)}</div>
-        <a class="p-insta" href="https://instagram.com/${esc(p.insta)}" target="_blank">@${esc(p.insta)}</a>
-      </div>
-    </div>
-    ${sendSection}`;
+  // send section depends on login state
+  let sendSection;
+
+  if(!SESSION){
+    // not logged in — show prompt
+    sendSection=`
+      <div class="login-prompt-box">
+        <p>To send ${first} a message, you need a free account.<br>
+        <strong>${first}</strong> won't see who you are — only the site admin logs that for safety.</p>
+        <button class="btn btn-primary" style="width:auto;padding:.75rem 2rem;margin-bottom:.75rem"
+          onclick="rememberAndGo('loginView')">Log in to send</button>
+        <p style="font-size:.73rem;color:var(--ink3)">No account? <a onclick="rememberAndGo('signupView')" style="color:var(--accent);cursor:pointer">Sign up free</a></p>
+      </div>`;
+  } else if(SESSION.insta===handle){
+    // viewing own profile
+    sendSection=`
+      <div class="send-card" style="text-align:center;padding:1.5rem">
+        <p style="font-size:.88rem;color:var(--ink2);margin-bottom:1rem">This is your profile 😄</p>
+        <button class="btn btn-outline btn-sm" style="width:auto;margin:0 auto" onclick="copyLink()">Copy my link</button>
+      </div>`;
+  } else {
+    // logged in, viewing someone else
+    sendSection=`
+      <div class="send-card">
+        <div id="sendForm">
+          <textarea id="msgTxt" placeholder="Write something honest…" maxlength="500" rows="5"></textarea>
+          <div class="char-row"><span id="cc">0</span>/500</div>
+          <button class="btn btn-primary" id="send-btn" onclick="sendMsg('${handle}')">Send message</button>
+          <div class="anon-badge"><div class="anon-dot"></div>${first} won't see your name</div>
+        </div>
+        <div class="sent-state" id="sentState">
+          <div class="sent-ico">✓</div>
+          <h3>Sent!</h3>
+          <p>Your message was delivered to ${first}.<br>They can't see it was you.</p>
+          <button class="send-again" onclick="resetSend()">Send another</button>
+        </div>
+      </div>`;
+  }
+
+  shell.innerHTML=header+sendSection;
 
   const ta=document.getElementById('msgTxt');
   if(ta) ta.addEventListener('input',function(){document.getElementById('cc').textContent=this.value.length;});
@@ -749,21 +695,117 @@ async function sendMsg(handle){
     screen: screen.width+'x'+screen.height,
   });
 
-  setBtn('send-btn',false,'Send anonymously');
-  if(error){toast('Failed to send. '+error.message);return;}
+  setBtn('send-btn',false,'Send message');
+  if(error){toast('Failed: '+error.message);return;}
   document.getElementById('sendForm').style.display='none';
-  document.getElementById('successBox').style.display='flex';
+  document.getElementById('sentState').style.display='flex';
 }
 
 function resetSend(){
   document.getElementById('msgTxt').value='';
   document.getElementById('cc').textContent='0';
   document.getElementById('sendForm').style.display='block';
-  document.getElementById('successBox').style.display='none';
+  document.getElementById('sentState').style.display='none';
 }
 
-// ── super admin ──────────────────────────────────────────
-let SA_FILTER='all', saAllMsgs=[], saProfiles={};
+// ── inbox ─────────────────────────────────────
+let CF='all';
+
+function openInbox(){
+  if(!SESSION){goto('loginView');return;}
+  document.getElementById('ib-name').textContent=SESSION.name.split(' ')[0]+"'s Inbox";
+  document.getElementById('ib-handle').textContent='@'+SESSION.insta;
+  renderInbox();
+}
+
+function setF(f,btn){
+  CF=f;
+  document.querySelectorAll('#inboxView .fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderInbox();
+}
+
+async function renderInbox(){
+  if(!SESSION) return;
+  const list=document.getElementById('msgList');
+  list.innerHTML='<div class="loading"><div class="spinner"></div> Loading…</div>';
+
+  let q=sb.from('messages').select('id,text,sender,device,platform,language,timezone,screen,created_at')
+    .eq('recipient',SESSION.insta).order('created_at',{ascending:false});
+
+  if(CF==='today'){
+    const t=new Date(); t.setHours(0,0,0,0);
+    q=q.gte('created_at',t.toISOString());
+  }
+
+  const {data:msgs,error}=await q;
+  if(error){list.innerHTML=`<div class="empty"><h3>Error</h3><p>${esc(error.message)}</p></div>`;return;}
+
+  const sq=document.getElementById('ib-srch').value.toLowerCase();
+  const filtered=sq?msgs.filter(m=>m.text.toLowerCase().includes(sq)):msgs;
+
+  // stats from full set
+  const {data:all}=await sb.from('messages').select('sender,created_at').eq('recipient',SESSION.insta);
+  const todayStr=new Date().toDateString();
+  document.getElementById('st-total').textContent=all?.length||0;
+  document.getElementById('st-senders').textContent=new Set(all?.map(m=>m.sender)||[]).size;
+  document.getElementById('st-today').textContent=all?.filter(m=>new Date(m.created_at).toDateString()===todayStr).length||0;
+
+  if(!filtered.length){
+    list.innerHTML=`<div class="empty">
+      <h3>${all?.length?'No matches':'No messages yet'}</h3>
+      <p>${all?.length?'Try a different filter':'Share your link to start receiving messages'}</p>
+    </div>`;
+    return;
+  }
+
+  // IMPORTANT: inbox owner sees message + device info only
+  // The "Reply on Instagram" button secretly opens the sender's profile
+  // but the owner doesn't know whose handle it is
+  list.innerHTML=filtered.map(m=>`
+    <div class="mc" id="mc-${m.id}">
+      <div class="mc-top">
+        <span class="mc-device">${esc(m.device||'Unknown')} · ${esc(m.timezone||'')} · ${esc(m.language||'')}</span>
+        <span class="mc-time">${ago(m.created_at)}</span>
+      </div>
+      <div class="mc-txt">${esc(m.text)}</div>
+      <div class="mc-actions">
+        <a class="reply-btn" href="https://instagram.com/${esc(m.sender)}" target="_blank">
+          ↗ Reply on Instagram
+        </a>
+        <button class="del-btn" onclick="delMsg('${m.id}')">Delete</button>
+      </div>
+    </div>`).join('');
+}
+
+// NOTE: the reply button opens instagram.com/[sender_handle]
+// The inbox owner sees the button but doesn't know whose handle it leads to
+// They just know someone messaged them and they can reply on Instagram
+
+async function delMsg(id){
+  await sb.from('messages').delete().eq('id',id);
+  document.getElementById('mc-'+id)?.remove();
+  toast('Deleted');
+  renderInbox();
+}
+
+async function clearInbox(){
+  if(!SESSION||!confirm('Delete all your messages? Cannot be undone.')) return;
+  await sb.from('messages').delete().eq('recipient',SESSION.insta);
+  toast('Inbox cleared');
+  renderInbox();
+}
+
+function copyLink(){
+  if(!SESSION) return;
+  const link=baseURL()+'#/p/'+SESSION.insta;
+  navigator.clipboard.writeText(link).then(()=>toast('Link copied! 🔗'));
+}
+
+function baseURL(){ return location.href.split('#')[0]; }
+
+// ── super admin ───────────────────────────────
+let SA_F='all', saAllMsgs=[], saProfiles={};
 
 document.getElementById('sa-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doAdminLogin();});
 
@@ -779,7 +821,7 @@ async function loadAdminData(){
   const {data:profs}=await sb.from('profiles').select('insta,name');
   saProfiles={};
   (profs||[]).forEach(p=>saProfiles[p.insta]=p.name);
-  document.getElementById('sa-profiles').textContent=(profs||[]).length;
+  document.getElementById('sa-profs').textContent=(profs||[]).length;
 
   const {data:msgs}=await sb.from('messages').select('*').order('created_at',{ascending:false});
   saAllMsgs=msgs||[];
@@ -787,7 +829,7 @@ async function loadAdminData(){
 }
 
 function setSAF(f,btn){
-  SA_FILTER=f;
+  SA_F=f;
   document.querySelectorAll('#adminView .fb').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
   renderAdmin();
@@ -798,22 +840,23 @@ function renderAdmin(){
   const today=new Date().toDateString();
 
   const filtered=saAllMsgs.filter(m=>{
-    if(SA_FILTER==='today'&&new Date(m.created_at).toDateString()!==today) return false;
+    if(SA_F==='today'&&new Date(m.created_at).toDateString()!==today) return false;
     if(q){
-      const sName=(saProfiles[m.sender]||'').toLowerCase();
-      const rName=(saProfiles[m.recipient]||'').toLowerCase();
-      if(![m.text,m.sender,m.recipient,sName,rName,m.device,m.timezone].some(v=>(v||'').toLowerCase().includes(q))) return false;
+      const sn=(saProfiles[m.sender]||'').toLowerCase();
+      const rn=(saProfiles[m.recipient]||'').toLowerCase();
+      if(![m.text,m.sender,m.recipient,sn,rn,m.device,m.timezone].some(v=>(v||'').toLowerCase().includes(q))) return false;
     }
     return true;
   });
 
-  document.getElementById('sa-total').textContent=saAllMsgs.length;
-  document.getElementById('sa-senders').textContent=new Set(saAllMsgs.map(m=>m.sender)).size;
+  document.getElementById('sa-msgs').textContent=saAllMsgs.length;
+  document.getElementById('sa-uniq').textContent=new Set(saAllMsgs.map(m=>m.sender)).size;
   document.getElementById('sa-today').textContent=saAllMsgs.filter(m=>new Date(m.created_at).toDateString()===today).length;
 
   const tbody=document.getElementById('saRows');
   if(!filtered.length){
-    tbody.innerHTML=`<tr><td colspan="6" style="text-align:center;padding:3rem;color:var(--ink3)">${saAllMsgs.length?'No matches':'No messages yet'}</td></tr>`;
+    tbody.innerHTML=`<tr><td colspan="6" style="text-align:center;padding:3rem;color:var(--ink3)">
+      ${saAllMsgs.length?'No matches':'No messages yet'}</td></tr>`;
     return;
   }
 
@@ -822,42 +865,40 @@ function renderAdmin(){
       <td>
         <div class="sa-person">
           <strong>${esc(saProfiles[m.sender]||'Unknown')}</strong>
-          <span>@${esc(m.sender)}</span>
+          <a href="https://instagram.com/${esc(m.sender)}" target="_blank">@${esc(m.sender)}</a>
         </div>
       </td>
-      <td style="text-align:center;color:var(--ink3);font-size:1.1rem">→</td>
+      <td class="sa-arr">→</td>
       <td>
         <div class="sa-person">
           <strong>${esc(saProfiles[m.recipient]||'Unknown')}</strong>
-          <span>@${esc(m.recipient)}</span>
+          <a href="https://instagram.com/${esc(m.recipient)}" target="_blank">@${esc(m.recipient)}</a>
         </div>
       </td>
       <td><div class="sa-msg-cell">${esc(m.text)}</div></td>
       <td>
-        <div class="sa-fp">
-          <span class="dev">${esc(m.device||'?')}</span>
-          <span>${esc(m.timezone||'')}</span>
-          <span>${esc(m.language||'')} · ${esc(m.screen||'')}</span>
+        <div class="sa-device">
+          <span>${esc(m.device||'?')}</span>
+          <span>${esc(m.timezone||'')} · ${esc(m.language||'')}</span>
+          <span style="color:var(--ink3);font-size:.68rem">${esc(m.screen||'')}</span>
         </div>
       </td>
-      <td style="font-size:.72rem;color:var(--ink3);white-space:nowrap">${fmt(m.created_at)}</td>
+      <td style="font-size:.7rem;color:var(--ink3);white-space:nowrap">${fmt(m.created_at)}</td>
     </tr>`).join('');
 }
 
 function exportCSV(){
-  if(!saAllMsgs.length){toast('No messages to export');return;}
-  const header=['sender_handle','sender_name','recipient_handle','recipient_name','message','device','timezone','language','screen','sent_at'];
+  if(!saAllMsgs.length){toast('Nothing to export');return;}
+  const hdr=['sender_handle','sender_name','recipient_handle','recipient_name','message','device','timezone','language','screen','sent_at'];
   const rows=saAllMsgs.map(m=>[
     m.sender, saProfiles[m.sender]||'',
     m.recipient, saProfiles[m.recipient]||'',
     '"'+(m.text||'').replace(/"/g,'""')+'"',
     m.device||'',m.timezone||'',m.language||'',m.screen||'',m.created_at
   ].join(','));
-  const csv=[header.join(','),...rows].join('\n');
   const a=document.createElement('a');
-  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
-  a.download='collegewhisper-messages.csv';
-  a.click();
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent([hdr.join(','),...rows].join('\n'));
+  a.download='collegewhisper.csv'; a.click();
   toast('CSV downloaded!');
 }
 
@@ -865,25 +906,17 @@ function saLogout(){
   document.getElementById('saLoginWrap').style.display='flex';
   document.getElementById('saMain').style.display='none';
   document.getElementById('sa-pass').value='';
-  goto('homeView');location.hash='';
+  goto('homeView'); location.hash='';
 }
 
-// ── routing ──────────────────────────────────────────────
+// ── routing ───────────────────────────────────
 function route(){
   const h=location.hash;
   if(h.startsWith('#/p/')){
-    const handle=h.slice(4);
     goto('profileView');
-    loadProfile(handle);
+    loadProfile(h.slice(4));
   } else if(h==='#/sadmin-'+ADMIN_SECRET){
     goto('adminView');
-  }
-
-  // redirect after login
-  const after=sessionStorage.getItem('afterLogin');
-  if(after&&SESSION){
-    sessionStorage.removeItem('afterLogin');
-    location.hash='/p/'+after;
   }
 }
 
