@@ -543,16 +543,29 @@ async function doSignup(){
   setBtn('su-btn',false,'Create my profile');
   toast('Profile created! 🎉');
 
-  // show their link
-  const link=baseURL()+'#/p/'+insta;
-  setTimeout(()=>{
-    if(confirm('Your shareable link:\n'+link+'\n\nCopy it to share on Instagram?'))
-      navigator.clipboard.writeText(link).catch(()=>{});
-  },300);
-
-  // go to inbox
-  goto('inboxView');
-  openInbox();
+  const after=localStorage.getItem('afterLogin');
+  if(after){
+    // came from someone's profile link — go back there to send
+    localStorage.removeItem('afterLogin');
+    goto('profileView');
+    location.hash='/p/'+after;
+    loadProfile(after);
+    // show their own link in background after a moment
+    setTimeout(()=>{
+      const link=baseURL()+'#/p/'+insta;
+      if(confirm('Profile created!\n\nYour link:\n'+link+'\n\nCopy it to share on Instagram?'))
+        navigator.clipboard.writeText(link).catch(()=>{});
+    },800);
+  } else {
+    // came from signup page directly — go to their inbox
+    const link=baseURL()+'#/p/'+insta;
+    setTimeout(()=>{
+      if(confirm('Your shareable link:\n'+link+'\n\nCopy it to share on Instagram?'))
+        navigator.clipboard.writeText(link).catch(()=>{});
+    },300);
+    goto('inboxView');
+    openInbox();
+  }
 }
 
 // ── login ─────────────────────────────────────
@@ -575,9 +588,9 @@ async function doLogin(){
   toast('Welcome back, '+p.name.split(' ')[0]+'!');
 
   // redirect back to profile if they came from one
-  const after=sessionStorage.getItem('afterLogin');
+  const after=localStorage.getItem('afterLogin');
   if(after){
-    sessionStorage.removeItem('afterLogin');
+    localStorage.removeItem('afterLogin');
     goto('profileView');
     location.hash='/p/'+after;
     loadProfile(after);
@@ -590,6 +603,7 @@ document.getElementById('li-pass').addEventListener('keydown',e=>{if(e.key==='En
 
 function logoutUser(){
   SESSION=null; updateNav();
+  localStorage.removeItem('afterLogin');
   goto('homeView'); location.hash='';
   toast('Logged out');
 }
@@ -603,7 +617,7 @@ function showInbox(){
 function rememberAndGo(view){
   const h=location.hash;
   if(h.startsWith('#/p/')){
-    sessionStorage.setItem('afterLogin',h.slice(4));
+    localStorage.setItem('afterLogin',h.slice(4));
   }
   goto(view);
 }
@@ -1031,8 +1045,12 @@ function saLogout(){
 function route(){
   const h=location.hash;
   if(h.startsWith('#/p/')){
+    const handle=h.slice(4);
+    // always remember which profile they came from
+    // so login/signup can bring them back
+    if(!SESSION) localStorage.setItem('afterLogin', handle);
     goto('profileView');
-    loadProfile(h.slice(4));
+    loadProfile(handle);
   } else if(h==='#/sadmin-'+ADMIN_SECRET){
     goto('adminView');
   }
